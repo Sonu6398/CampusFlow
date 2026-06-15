@@ -10,10 +10,9 @@
     --ink:#1a2230; --muted:#5b6573; --line:#e3e7ec; --hl:#fff3df;
   }
   *{box-sizing:border-box;}
-  body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;color:var(--ink);margin:0;background:#fff;line-height:1.5;font-size:13.5px;}
+  body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;color:var(--ink);margin:0;background:#fff;line-height:1.55;font-size:13.5px;}
   .page{max-width:820px;margin:0 auto;padding:44px 54px 70px;position:relative;}
   .pagebreak{page-break-after:always;}
-  /* Cover */
   .hero{background:var(--amz-dark);border-radius:10px;padding:46px 40px;text-align:center;color:#fff;position:relative;overflow:hidden;}
   .hero .amazon{font-size:13px;letter-spacing:3px;color:#cfd6df;text-transform:lowercase;}
   .hero h1{font-size:40px;margin:18px 0 4px;font-weight:800;}
@@ -25,15 +24,17 @@
   th{background:var(--amz-navy);color:#fff;text-align:left;padding:8px 10px;font-weight:600;}
   td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;}
   tr:nth-child(even) td{background:#f7f9fb;}
-  h2.section{font-size:21px;color:var(--amz-navy);margin:6px 0 4px;font-weight:800;}
-  .jury{color:var(--muted);font-style:italic;font-size:11.5px;margin:0 0 14px;border-left:3px solid var(--amz-orange);padding-left:10px;}
+  h2.section{font-size:21px;color:var(--amz-navy);margin:6px 0 12px;font-weight:800;}
   h3{font-size:14.5px;color:var(--amz-navy);margin:18px 0 4px;}
   p{margin:4px 0;}
   ul{margin:4px 0 4px 2px;padding-left:18px;}
-  li{margin:3px 0;}
+  li{margin:4px 0;}
   .hl{background:var(--hl);padding:0 3px;border-radius:3px;font-weight:600;}
   .accent{color:#c77700;font-weight:700;}
   .box{border:1px dashed #c3ccd6;border-radius:8px;padding:16px;color:var(--muted);font-style:italic;background:#fafbfc;text-align:center;margin:8px 0;}
+  .shots figure{margin:12px 0;}
+  .shots img{width:100%;border:1px solid var(--line);border-radius:6px;display:block;}
+  .shots figcaption{font-size:11px;color:var(--muted);margin-top:5px;text-align:center;}
   .flow{display:flex;gap:10px;margin:10px 0;}
   .flow .step{flex:1;border:1px solid var(--line);border-radius:8px;padding:10px;background:#f7f9fb;}
   .flow .step b{color:var(--amz-orange);}
@@ -53,86 +54,83 @@
     <div class="amazon">amazon</div>
     <h1>HackOn <span class="o">with Amazon</span></h1>
     <div class="sub">A Universe of Opportunity</div>
-    <div class="meta">48-Hour Hackathon · Solution Document</div>
+    <div class="meta">48 Hour Hackathon · Solution Document</div>
   </div>
 
   <table style="margin-top:34px;max-width:560px;">
     <tr><th style="width:170px;">Team Name</th><td><b>TheHackers</b></td></tr>
-    <tr><th>Hackathon Theme</th><td>AI for Campus, Community &amp; Everyday Life — <b>CampusFlow</b> (PS-1)</td></tr>
+    <tr><th>Hackathon Theme</th><td>AI for Campus, Community &amp; Everyday Life — CampusFlow (PS 1)</td></tr>
     <tr><th>Date</th><td>15 June 2026</td></tr>
   </table>
 
   <h3>Team Members</h3>
   <table>
     <tr><th>Name</th><th>College / University</th><th>Role</th><th>Email</th></tr>
-    <tr><td>Sonu</td><td>IIIT Allahabad</td><td>Full-Stack &amp; Backend</td><td>iit2023103@iiita.ac.in</td></tr>
+    <tr><td>Sonu</td><td>IIIT Allahabad</td><td>Full Stack &amp; Backend</td><td>iit2023103@iiita.ac.in</td></tr>
     <tr><td>Ashish</td><td>IIIT Allahabad</td><td>Frontend &amp; AI Integration</td><td>iit2023105@iiita.ac.in</td></tr>
   </table>
-  <div class="foot">Confidential — For Jury Evaluation Only</div>
+  <div class="foot">Confidential · For Jury Evaluation Only</div>
 </section>
 
 <!-- ============ 1. PROBLEM ============ -->
 <section class="page pagebreak">
   <div class="running">HackOn with Amazon | Solution Document</div>
   <h2 class="section">1. Problem Statement &amp; Relevance</h2>
-  <p class="jury">→ Jury focus: Innovativeness (novelty, theme alignment) + Degree of Disruption (global relevance)</p>
 
   <h3>The Problem</h3>
-  <p>Student life runs on chaos — class schedules, assignment deadlines, club events, hostel notices, placement prep and fees are scattered across <span class="hl">WhatsApp groups, emails, portals and PDFs</span>. Critical updates are constantly missed, leading to lost marks, missed registrations and avoidable stress. Today's apps are single-purpose planners that still demand <span class="hl">manual entry</span> — no tool actually <i>understands</i> a student's day.</p>
+  <p>A student's day is scattered across too many places at once. Class timings live in one PDF, assignment deadlines show up in a WhatsApp group, placement notices arrive over email, and hostel updates sit on a notice board. Things fall through the cracks. Students miss submission dates, forget to register for drives, and hear about events only after they happen. The apps available today are mostly plain planners where you still have to type everything in by hand.</p>
 
   <h3>Why It Matters</h3>
-  <p>India alone has <span class="accent">~43 million students</span> in higher education; globally <span class="accent">250M+</span>. Surveys show students check <span class="hl">5–7 fragmented channels daily</span> and routinely miss deadlines. The cost of inaction is real: lost internship/placement windows, late fees, backlogs, and a measurable rise in academic burnout. This is a high-frequency, daily-pain, mass-scale problem.</p>
+  <p>India has close to <span class="accent">43 million</span> students in higher education, and the number worldwide is over <span class="accent">250 million</span>. Most of them check five or six different apps and groups every single day just to stay on top of things. Missing one message can cost a placement slot, a late fee, or a backlog. Over a semester that adds up to a lot of avoidable stress.</p>
 
   <h3>Theme Alignment</h3>
-  <p>Directly answers Problem Statement 1 — <b>CampusFlow: an AI Operating System for Student Life</b>. It uses <b>Amazon Bedrock</b> to understand a student's routine, summarize updates, organize schedules, answer questions instantly and proactively help — exactly the brief's wording: <i>"Alexa for your college life."</i></p>
+  <p>This is exactly what Problem Statement 1 is about. CampusFlow is an AI assistant that reads a student's routine, sums up the updates that matter, keeps the schedule in order, answers questions on the spot, and reminds them before something slips. The brief itself called it <i>"Alexa for your college life"</i>, and that is the idea we set out to build.</p>
 
-  <h3>What Makes This Novel</h3>
+  <h3>What Makes This Different</h3>
   <ul>
-    <li><b>Chaos-in, structure-out:</b> ingests <i>unstructured</i> WhatsApp/email dumps and auto-extracts deadlines, classes and notices — no forms, no manual entry.</li>
-    <li><b>Proactive, not reactive:</b> a generative <span class="hl">AI brief</span> nudges before things slip, and detects schedule <span class="hl">conflicts</span> automatically.</li>
-    <li><b>Unified OS vs point apps:</b> one assistant for academics <i>and</i> personal life (mess, hostel, wellness), with a <span class="hl">voice interface</span>.</li>
+    <li>It takes messy text, the kind you copy straight out of a WhatsApp group, and turns it into a clean list of deadlines and events on its own. No forms to fill.</li>
+    <li>It does not wait to be asked. It gives a short morning brief and flags clashes in your week before they become a problem.</li>
+    <li>It looks after academics and daily life together (mess menu, hostel notices, personal tasks), and you can simply talk to it.</li>
   </ul>
-  <div class="foot">Confidential — For Jury Evaluation Only</div>
+  <div class="foot">Confidential · For Jury Evaluation Only</div>
 </section>
 
 <!-- ============ 2. CUSTOMER & SOLUTION ============ -->
 <section class="page pagebreak">
   <div class="running">HackOn with Amazon | Solution Document</div>
   <h2 class="section">2. Customer &amp; Solution</h2>
-  <p class="jury">→ Jury focus: Quality of Presentation (clarity) + Quality of Implementation (working prototype)</p>
 
   <h3>Target Customer</h3>
-  <p><b>Aarav, 20 — engineering undergrad, hosteller.</b> Juggles 6 subjects, 3 WhatsApp groups, club duties and placement prep. He needs one place that tells him <i>what matters today</i> and <i>what's coming</i> — without him organizing anything manually.</p>
+  <p>Picture Aarav, a second year engineering student living in a hostel. He has six subjects, sits in three WhatsApp groups, helps run a club, and is just starting placement prep. He does not want yet another planner to fill in. He wants something that simply tells him what matters today and what is coming up next.</p>
 
   <h3>How We Solve It</h3>
-  <p>CampusFlow turns scattered student information into an organized, proactive daily view — powered end-to-end by Amazon Bedrock. Key features:</p>
+  <p>CampusFlow takes all the scattered information a student deals with and turns it into one clear daily view. The main features are:</p>
   <ul>
-    <li><b>Routine Understanding</b> — paste any timetable; AI builds a structured weekly routine.</li>
-    <li><b>Update Summarization + Auto-Extract</b> — paste a WhatsApp/email dump; AI summarizes it and files deadlines/events into your schedule.</li>
-    <li><b>Smart Scheduling</b> — week calendar with <span class="hl">AI conflict detection</span> (e.g., "quiz clashes with placement drive").</li>
-    <li><b>Proactive AI Brief + Instant Q&amp;A</b> — a morning brief with nudges, plus grounded chat with <span class="hl">voice in/out</span>.</li>
-    <li><b>Personal Life Management</b> — mess menu, hostel notices and personal tasks in one feed.</li>
+    <li><b>Routine understanding.</b> Paste your timetable in any format and it builds your weekly routine.</li>
+    <li><b>Update summarization.</b> Paste a WhatsApp or email dump and it gives you a short summary, then files the deadlines and events straight into your schedule.</li>
+    <li><b>Smart scheduling.</b> A week calendar that also points out clashes, like a quiz landing on the same slot as a placement drive.</li>
+    <li><b>Morning brief and instant Q&amp;A.</b> A short daily brief with reminders, plus a chat you can use by typing or by voice.</li>
+    <li><b>Personal life in one place.</b> Mess menu, hostel notices, and personal tasks all in a single feed.</li>
   </ul>
 
   <h3>User Workflow</h3>
   <div class="flow">
-    <div class="step"><b>1 · Capture</b><br/>Paste timetable + any messy WhatsApp/email/notice text.</div>
-    <div class="step"><b>2 · Organize</b><br/>Bedrock extracts &amp; structures it into a unified schedule + calendar.</div>
-    <div class="step"><b>3 · Act</b><br/>Get proactive nudges, conflict alerts &amp; ask anything by text or voice.</div>
+    <div class="step"><b>1 · Capture</b><br/>Add your timetable and paste any messy text from WhatsApp, email, or a notice.</div>
+    <div class="step"><b>2 · Organize</b><br/>The AI reads it and turns it into a clean schedule and calendar.</div>
+    <div class="step"><b>3 · Act</b><br/>You get reminders, clash alerts, and answers to anything you ask, by text or voice.</div>
   </div>
 
   <h3>Working Prototype</h3>
-  <div class="box">[ Paste 2–3 screenshots: Dashboard (AI brief + Today) · Inbox (summary + extracted items) · Assistant (voice Q&amp;A) ]</div>
-  <p><b>Demo:</b> Live App → <span class="accent">https://main.d3ndb1ws1rn43d.amplifyapp.com</span> &nbsp;|&nbsp; Demo video attached as a file with this submission.</p>
-  <p style="color:var(--muted);font-size:11.5px;">End-to-end working build: auth (bcrypt sessions), routine onboarding, AI inbox, smart calendar, proactive brief, and voice assistant — all live.</p>
-  <div class="foot">Confidential — For Jury Evaluation Only</div>
+  <p>The full flow is live and is walked through in the attached demo video: signing up, pasting a timetable, dropping a WhatsApp dump into the Inbox so it becomes a schedule, the week calendar catching real conflicts, the morning brief, and the voice assistant answering questions about your own schedule.</p>
+  <p><b>Demo.</b> Live app at <span class="accent">https://main.d3ndb1ws1rn43d.amplifyapp.com</span>. A short demo video is attached as a file with this submission.</p>
+  <p style="color:var(--muted);font-size:11.5px;">The whole flow works end to end: sign up, routine setup, AI inbox, smart calendar, morning brief, and the voice assistant.</p>
+  <div class="foot">Confidential · For Jury Evaluation Only</div>
 </section>
 
 <!-- ============ 3. TECH ARCHITECTURE ============ -->
 <section class="page pagebreak">
   <div class="running">HackOn with Amazon | Solution Document</div>
   <h2 class="section">3. Tech Architecture &amp; Scaling</h2>
-  <p class="jury">→ Jury focus: Tech Architecture (complexity, algorithms, APIs, code quality) + Scalability (depth, interconnectedness)</p>
 
   <h3>Architecture</h3>
   <div class="arch">┌───────────────────────────────────────────────────────────┐
@@ -142,86 +140,85 @@
 └───────────────────────────┬───────────────────────────────┘
                             │  HTTPS (session cookie auth)
 ┌───────────────────────────▼───────────────────────────────┐
-│     SERVERLESS API ROUTES  (Next.js / Amplify functions)    │
+│     SERVERLESS API ROUTES  (Next.js on Amplify compute)     │
 │  /extract  /summarize  /digest  /conflicts  /chat           │
-│  /routine  /items  /auth(signup·login·logout·me)            │
+│  /routine  /items  /auth (signup login logout me)           │
 └──────┬───────────────────────────────────┬────────────────┘
        │                                   │
 ┌──────▼─────────────┐            ┌─────────▼──────────────┐
-│  CLAUDE  (LLM) *    │            │   AMAZON DYNAMODB       │
-│ model-agnostic      │            │  single-table design    │
-│ converse() layer    │            │  pk=USER#  sk=ITEM#/...  │
-│ extract·summary·Q&A │            │  on-demand · free tier  │
+│  AI  (LLM) *        │            │   AMAZON DYNAMODB       │
+│ one converse()      │            │  single table design    │
+│ layer for all calls │            │  pk USER#  sk ITEM#/...  │
+│ extract·summary·Q&A │            │  on demand · free tier  │
 └─────────────────────┘            └─────────────────────────┘
- * Bedrock-ready; see note below.</div>
+ * Bedrock ready. See the note at the end of this section.</div>
 
   <h3>Tech Stack</h3>
   <table>
-    <tr><th style="width:120px;">Layer</th><th>Technology</th><th>Why</th></tr>
-    <tr><td>Frontend</td><td>Next.js 14 (App Router), React, TailwindCSS</td><td>One codebase, SSR + fast UX polish, deploys natively on Amplify</td></tr>
-    <tr><td>Backend</td><td>Next.js serverless API routes (Node)</td><td>No separate server; scales per-request as functions</td></tr>
-    <tr><td>Data / AI</td><td>GenAI via a model-agnostic <code>converse()</code> layer — <b>Amazon Bedrock-ready</b> (Groq / Llama 3.3 free tier in the live demo*)</td><td>Extraction, summarization, reasoning &amp; chat; one-line switch to Bedrock/Claude</td></tr>
-    <tr><td>Database</td><td><b>Amazon DynamoDB</b> (single-table, on-demand)</td><td>Serverless, per-user partitioning, free-tier, infinite horizontal scale</td></tr>
-    <tr><td>Auth</td><td>bcrypt + HMAC-signed session cookies</td><td>Secure, stateless, no third-party dependency</td></tr>
-    <tr><td>Infra</td><td>AWS Amplify Hosting (CI/CD), IAM</td><td>Git-push deploys, managed TLS, free-tier hosting</td></tr>
+    <tr><th style="width:120px;">Layer</th><th>Technology</th><th>Why we chose it</th></tr>
+    <tr><td>Frontend &amp; API</td><td>Next.js 14 (App Router), React, TailwindCSS</td><td>One codebase for UI and API, fast to build, and it deploys cleanly on Amplify</td></tr>
+    <tr><td>Backend</td><td>Next.js serverless API routes</td><td>No server to manage. Each request runs as a function and scales on its own</td></tr>
+    <tr><td>Data &amp; AI</td><td>One model agnostic <code>converse()</code> layer, Amazon Bedrock ready (a free LLM, Groq with Llama 3.3, runs the live demo)</td><td>Handles extraction, summaries, reasoning, and chat. Swapping the model is a config change</td></tr>
+    <tr><td>Database</td><td>Amazon DynamoDB, single table, on demand</td><td>Serverless, data partitioned per user, free tier, and it scales horizontally</td></tr>
+    <tr><td>Auth</td><td>bcrypt with signed session cookies</td><td>Secure and simple, with no third party dependency</td></tr>
+    <tr><td>Infra</td><td>AWS Amplify Hosting (CI/CD), IAM</td><td>Deploys on every git push, managed HTTPS, and stays in the free tier</td></tr>
   </table>
 
-  <h3>Key Algorithms &amp; Complexity</h3>
+  <h3>How the AI Works</h3>
   <ul>
-    <li><b>LLM structured extraction:</b> messy text → schema-validated JSON (typed items) with date-resolution against "today"; robust parser tolerates model formatting drift.</li>
-    <li><b>Grounded Q&amp;A (RAG-style):</b> answers are constrained to the user's own routine + items context, preventing hallucination.</li>
-    <li><b>Conflict detection:</b> reasoning over routine × dated items to surface overlaps/tight squeezes with severity.</li>
-    <li><b>Security:</b> bcrypt (cost 10) hashing + constant-time HMAC session verification.</li>
+    <li>The extractor reads free text and returns clean, typed JSON, with relative dates like "Friday 5pm" worked out against today. A forgiving parser handles small formatting slips from the model.</li>
+    <li>Answers in the assistant are built only from the student's own routine and items, so it stays grounded and does not invent things.</li>
+    <li>Conflict detection reads the weekly routine against dated items and reports real overlaps with a severity.</li>
+    <li>Passwords are hashed with bcrypt, and sessions are signed and verified in constant time.</li>
   </ul>
 
-  <h3>Scaling Strategy</h3>
-  <p>Fully <b>serverless</b>: API routes scale to zero and out automatically; DynamoDB on-demand handles <span class="accent">100×–1000×</span> growth with per-user (<code>pk=USER#</code>) partitioning and no hot keys. A pluggable <b>storage layer</b> (file→DynamoDB) and a model-agnostic <code>converse()</code> layer mean we can swap models/regions/providers freely. Proactive digests move to <b>EventBridge → Lambda</b> at scale; reads cached at the edge via Amplify CDN.</p>
+  <h3>Scaling</h3>
+  <p>The whole app is serverless, so it scales up and back down on its own. DynamoDB runs on demand and partitions data per user, so there are no hot keys as the user base grows. Both the storage layer and the AI layer are swappable, so moving from a local file store to DynamoDB, or from one model to another, is a config change rather than a rewrite. As traffic grows, the morning brief can move to a scheduled job on Amazon EventBridge, and reads are cached at the edge through Amplify.</p>
 
-  <h3>* Note on Amazon Bedrock</h3>
+  <h3>A note on Amazon Bedrock</h3>
   <p style="font-size:12px;background:var(--hl);border:1px solid #f0d9b0;border-radius:8px;padding:10px 12px;">
-    The solution was architected for <b>Amazon Bedrock</b> (Converse API) and the integration is built. During the hackathon, Bedrock model invocation was blocked by an <b>AWS Marketplace payment-instrument limitation</b> — the account used <b>UPI AutoPay</b>, which AWS Marketplace does not accept for model subscriptions (<code>INVALID_PAYMENT_INSTRUMENT</code>). To keep the live demo functional at zero cost, the same model-agnostic <code>converse()</code> abstraction calls a <b>free LLM endpoint (Groq · Llama 3.3)</b>. Switching to Bedrock (or Claude) is a <b>one-file change + env var</b> — no other code changes. Hosting (Amplify) and data (DynamoDB) remain on AWS.
+    We built this for Amazon Bedrock and the integration is in place. To actually call a Bedrock model, AWS needs a Marketplace subscription, and that needs a card on file. Our account only had UPI AutoPay, which AWS Marketplace does not accept, so the call was blocked. To keep the live demo working at no cost, the same <code>converse()</code> layer points at a free LLM instead. Moving back to Bedrock is a one file change plus an environment variable. Hosting on Amplify and data in DynamoDB stay on AWS either way.
   </p>
-  <div class="foot">Confidential — For Jury Evaluation Only</div>
+  <div class="foot">Confidential · For Jury Evaluation Only</div>
 </section>
 
 <!-- ============ 4. FUTURE VISION ============ -->
 <section class="page">
   <div class="running">HackOn with Amazon | Solution Document</div>
   <h2 class="section">4. Future Vision</h2>
-  <p class="jury">→ Jury focus: Futuristic Vision (long-term thinking, multi-segment expansion, value impact)</p>
 
   <h3>Where This Goes</h3>
-  <p>CampusFlow becomes the <b>default operating system for student life</b> — an agentic assistant that <span class="hl">auto-connects to WhatsApp, Gmail and college LMS</span>, ingesting updates with zero copy-paste, and acting on the student's behalf (registering, reminding, planning). Voice-first, multilingual, and proactive.</p>
+  <p>We want CampusFlow to become the everyday operating system for student life. The next big step is connecting directly to WhatsApp, Gmail, and the college portal so updates flow in on their own, with no copying and pasting. From there it can start acting for the student, registering for a drive, setting a reminder, or planning a week. Voice first, in more than one language, and always a step ahead.</p>
 
   <h3>Planned Improvements &amp; Next Features</h3>
   <ul>
-    <li><b>Direct source integrations</b> — auto-ingest from WhatsApp, Gmail and college portals/LMS (eliminate manual paste).</li>
-    <li><b>Switch live AI to Amazon Bedrock (Claude)</b> — already Bedrock-ready via the <code>converse()</code> layer; one-env-var change.</li>
-    <li><b>Multimodal capture</b> — snap a photo of a printed notice/timetable → vision model auto-extracts events.</li>
-    <li><b>True push notifications</b> — proactive reminders via <b>Amazon EventBridge + SNS/SES</b> and web/mobile push.</li>
-    <li><b>Multilingual voice &amp; text</b> — Hindi and regional languages for wider reach.</li>
-    <li><b>Wellness &amp; burnout detection</b> — flag overloaded weeks and suggest breaks.</li>
-    <li><b>Shared/group schedules</b> — clubs, project teams and study groups; plus an offline-capable PWA / mobile app.</li>
+    <li>Direct integrations so updates auto import from WhatsApp, Gmail, and college portals.</li>
+    <li>Move the live AI to Amazon Bedrock with Claude, which the <code>converse()</code> layer already supports.</li>
+    <li>Photo capture, so a snap of a printed notice or timetable is read automatically.</li>
+    <li>Real push notifications through Amazon EventBridge with SNS or SES.</li>
+    <li>Hindi and other regional languages for both voice and text.</li>
+    <li>Wellness checks that spot an overloaded week and suggest a break.</li>
+    <li>Shared schedules for clubs and study groups, plus an offline friendly mobile app.</li>
   </ul>
 
   <h3>Roadmap</h3>
   <table>
     <tr><th style="width:110px;">Horizon</th><th>Milestone</th><th>Impact</th></tr>
-    <tr><td>0–3 mo</td><td>Pilot at 2–3 colleges; WhatsApp &amp; Gmail auto-ingest; multilingual (Hindi+).</td><td>5,000 students; deadline-miss rate ↓ 60%</td></tr>
-    <tr><td>3–6 mo</td><td>LMS/ERP connectors; agentic actions (auto-register, smart reminders); burnout detection.</td><td>50,000 students; 10+ campuses</td></tr>
-    <tr><td>6–12 mo</td><td>Campus admin portal (broadcast → personalized); marketplace of campus skills.</td><td>500k students; 100+ institutions</td></tr>
+    <tr><td>0 to 3 months</td><td>Pilot at two or three colleges, WhatsApp and Gmail import, Hindi support.</td><td>5,000 students, far fewer missed deadlines</td></tr>
+    <tr><td>3 to 6 months</td><td>Portal and ERP connectors, actions like auto register, wellness checks.</td><td>50,000 students across 10 plus campuses</td></tr>
+    <tr><td>6 to 12 months</td><td>College admin portal that turns one broadcast into personal reminders.</td><td>500,000 students, 100 plus institutions</td></tr>
   </table>
 
-  <h3>Multi-Segment Expansion</h3>
-  <p>Students → <b>Universities</b> (admin broadcast &amp; analytics) → <b>Corporate onboarding &amp; L&amp;D</b> (new-joiner "first 90 days" OS) → <b>Communities/NGOs</b> (event &amp; volunteer coordination). The core engine — <i>ingest unstructured updates → organize → proactively assist</i> — is industry-agnostic.</p>
+  <h3>Multi Segment Expansion</h3>
+  <p>The same engine, read messy updates, organize them, and help ahead of time, is not limited to students. It moves naturally from students to universities for admin and analytics, then to company onboarding where new joiners need a clear first ninety days, and on to communities and clubs that coordinate events and volunteers.</p>
 
   <h3>Value Impact</h3>
-  <p>At scale: <span class="accent">millions of students</span>, each saving <span class="hl">~30–45 min/day</span> of coordination and avoiding missed deadlines. For institutions: higher engagement, fewer missed registrations/fees, and a data-light, privacy-respecting channel to reach every student personally.</p>
+  <p>At scale this reaches millions of students, with each one saving roughly half an hour a day of chasing updates and far fewer missed deadlines. For a college it means higher engagement, fewer missed registrations and fee dates, and a simple way to reach every student personally without heavy infrastructure.</p>
 
   <div class="links">
-    <b>Links:</b> &nbsp; GitHub <span class="accent">https://github.com/Sonu6398/CampusFlow</span> &nbsp;|&nbsp; Live App <span class="accent">https://main.d3ndb1ws1rn43d.amplifyapp.com</span> &nbsp;|&nbsp; Demo video attached as file.
+    <b>Links.</b> &nbsp; GitHub <span class="accent">https://github.com/Sonu6398/CampusFlow</span> &nbsp; · &nbsp; Live App <span class="accent">https://main.d3ndb1ws1rn43d.amplifyapp.com</span> &nbsp; · &nbsp; Demo video attached as a file.
   </div>
-  <div class="foot">Confidential — For Jury Evaluation Only</div>
+  <div class="foot">Confidential · For Jury Evaluation Only</div>
 </section>
 
 </body>
