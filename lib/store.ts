@@ -119,8 +119,20 @@ class DynamoStore implements Store {
     if (!this.doc) {
       const { DynamoDBClient } = await import("@aws-sdk/client-dynamodb");
       const { DynamoDBDocumentClient } = await import("@aws-sdk/lib-dynamodb");
+
+      // Use CF_AWS_* names so they don't collide with the AWS_* env vars that
+      // Amplify/Lambda reserve. Fall back to the default credential chain locally.
+      const region =
+        process.env.CF_AWS_REGION || process.env.AWS_REGION || "us-east-1";
+      const accessKeyId = process.env.CF_AWS_ACCESS_KEY_ID;
+      const secretAccessKey = process.env.CF_AWS_SECRET_ACCESS_KEY;
+      const creds =
+        accessKeyId && secretAccessKey
+          ? { credentials: { accessKeyId, secretAccessKey } }
+          : {};
+
       this.doc = DynamoDBDocumentClient.from(
-        new DynamoDBClient({ region: process.env.AWS_REGION || "us-east-1" }),
+        new DynamoDBClient({ region, ...creds }),
         { marshallOptions: { removeUndefinedValues: true } }
       );
     }
