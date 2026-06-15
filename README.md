@@ -1,67 +1,86 @@
 # CampusFlow — AI Operating System for Student Life
 
-> Paste the chaos (WhatsApp dumps, emails, hostel notices) → CampusFlow turns it
-> into an organized schedule and answers questions about it.
-> **HackOn with Amazon S6 · AWS Amplify Hosting + Amazon Bedrock (Claude).**
+> Paste the chaos — class schedules, WhatsApp dumps, emails, hostel notices —
+> and CampusFlow organizes it, answers your questions (by text or voice), and
+> proactively nudges you before deadlines slip. **"Alexa for your college life."**
+>
+> **HackOn with Amazon S6 · Theme: AI for Campus, Community & Everyday Life (PS-1)**
 
-## What works in this prototype
-- **Routine / Summarization / Scheduling** — paste any messy text, Bedrock (Claude
-  Haiku) extracts deadlines, events, classes, notices into a sorted timeline.
-- **Instant Q&A** — ask "what's due this week?"; Bedrock (Claude Sonnet) answers
-  grounded in *your* items.
-- **Persistence** — best-effort save to DynamoDB (off the critical demo path).
+🔗 **Live app:** https://main.d3ndb1ws1rn43d.amplifyapp.com
+📦 **Repo:** https://github.com/Sonu6398/CampusFlow
+
+---
+
+## What it does (the 6 pillars)
+
+| Pillar | In the app |
+|---|---|
+| **Routine Understanding** | Onboarding: paste any timetable → AI builds your weekly routine |
+| **Update Summarization** | Inbox: paste a WhatsApp/email dump → AI summary |
+| **Smart Scheduling** | Auto-extracts deadlines/events → week calendar with **AI conflict detection** |
+| **Instant Q&A** | Assistant: grounded chat over *your* schedule |
+| **Proactive Alerts** | Dashboard: AI morning brief + actionable nudges |
+| **Personal Life** | Mess menu, hostel notices & personal tasks in one feed |
+| **Voice mode 🎤** | Speak to the assistant, get spoken answers |
+
+## Tech stack
+
+| Layer | Tech |
+|---|---|
+| Frontend + API | **Next.js 14** (App Router, TypeScript), TailwindCSS |
+| Hosting | **AWS Amplify** (CI/CD from GitHub) |
+| Database | **Amazon DynamoDB** (single-table, on-demand) |
+| Auth | bcrypt + HMAC-signed session cookies |
+| AI | Model-agnostic `converse()` layer — **Amazon Bedrock-ready** (Groq / Llama 3.3 in the live demo) |
+
+> **Note on the AI provider:** the app was built for **Amazon Bedrock** (Converse API).
+> Bedrock invocation needs an AWS Marketplace subscription = a card payment instrument;
+> the demo account only had UPI AutoPay (rejected by Marketplace). The same model-agnostic
+> `converse()` layer therefore calls a free LLM endpoint for the live demo — switching back
+> to Bedrock/Claude is a one-file change. Hosting (Amplify) and data (DynamoDB) stay on AWS.
 
 ## Architecture
+
 ```
 Next.js (Amplify Hosting)
-  ├─ /api/extract  → Bedrock Converse (Haiku) → JSON items → DynamoDB
-  └─ /api/chat     → Bedrock Converse (Sonnet) over the student's items
+  ├─ Auth (bcrypt + session cookies)
+  ├─ Pages: Landing · Login · Onboarding · Dashboard · Calendar · Inbox · Assistant
+  └─ API routes: /extract /summarize /digest /conflicts /chat
+                 /routine /routine/parse /items /auth/*
+        │                         │
+   converse() LLM layer      Storage layer
+   (Bedrock-ready)           (JSON file in dev → DynamoDB in prod)
 ```
 
 ---
 
-## 1. Local setup (do this first)
+## Run locally
 
 ```bash
 npm install
-cp .env.local.example .env.local   # then edit it (see below)
-npm run dev                         # http://localhost:3000
+cp .env.local.example .env.local   # fill in the values below
+npm run dev                          # http://localhost:3000
 ```
 
-### Get AWS credentials (no AWS CLI needed)
-1. AWS Console → **IAM** → Users → Create user (e.g. `campusflow-dev`).
-2. Attach a policy with `bedrock:InvokeModel` and DynamoDB access
-   (for a hackathon you can use `AmazonBedrockFullAccess` + `AmazonDynamoDBFullAccess`).
-3. Create an **access key** → put the key + secret into `.env.local`.
+### Environment variables
+| Key | Purpose |
+|---|---|
+| `GROQ_API_KEY` | Free LLM key (console.groq.com). Bedrock-ready alternative. |
+| `GROQ_MODEL_EXTRACT` / `GROQ_MODEL_CHAT` | `llama-3.3-70b-versatile` |
+| `SESSION_SECRET` | Long random string for signing session cookies |
+| `STORE` | `dynamo` in prod; unset locally (uses `.data/db.json`) |
+| `DDB_TABLE` | `CampusFlow` (when `STORE=dynamo`) |
+| `CF_AWS_REGION` / `CF_AWS_ACCESS_KEY_ID` / `CF_AWS_SECRET_ACCESS_KEY` | DynamoDB credentials in prod |
 
-### Enable Bedrock models (critical — do early)
-AWS Console → **Bedrock** → *Model access* → enable **Anthropic Claude**
-(Haiku + Sonnet). Approval can take a few minutes.
-Confirm the exact model IDs available in your region and, if they differ from the
-defaults, set `BEDROCK_MODEL_EXTRACT` / `BEDROCK_MODEL_CHAT` in `.env.local`.
+> Local dev needs **no AWS** — it uses a JSON file store and your Groq key.
 
-### (Optional) DynamoDB table
-AWS Console → **DynamoDB** → Create table:
-- Table name: `CampusFlowItems`
-- Partition key: `userId` (String) · Sort key: `itemId` (String)
-- Capacity: **On-demand**
+## Deploy (AWS Amplify)
+1. Push to GitHub.
+2. Amplify → Create app → connect repo + `main` branch (Next.js auto-detected).
+3. DynamoDB table `CampusFlow` (partition key `pk`, sort key `sk`, on-demand).
+4. Add the env vars above in Amplify → **Redeploy**.
 
-Skip it for now with `DDB_DISABLED=true` — the app still works from client state.
-
----
-
-## 2. Deploy to AWS Amplify (live URL)
-1. Push this repo to GitHub.
-2. AWS Console → **Amplify** → New app → Host web app → connect the repo.
-3. Amplify auto-detects Next.js (build config is in `amplify.yml`).
-4. Add **environment variables** in the Amplify console (same as `.env.local`).
-5. Attach an IAM service role to the Amplify app that allows `bedrock:InvokeModel`
-   and DynamoDB access so the deployed functions can call Bedrock.
-6. Deploy → you get `https://<branch>.<id>.amplifyapp.com`. Share that link.
-
----
-
-## Demo script (3 min)
-1. Click **Load sample** → **Organize my life** → timeline fills instantly.
-2. Ask **"What's most urgent this week?"** → grounded answer.
-3. Show the architecture slide: "all AI runs on Amazon Bedrock."
+## Demo flow
+Sign up → Onboarding (paste timetable) → Inbox (paste WhatsApp dump → AI summarizes
+& files items) → Dashboard (AI brief) → Calendar (conflict scan) → Assistant (ask by
+text or voice).
