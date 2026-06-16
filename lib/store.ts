@@ -1,5 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import os from "node:os";
 import type { Item, RoutineEntry, User } from "./types";
 
 /**
@@ -36,7 +37,9 @@ type DbShape = {
 };
 
 class FileStore implements Store {
-  private file = path.join(process.cwd(), ".data", "db.json");
+  // Use the OS temp dir so it is writable on serverless hosts (Lambda),
+  // where the app directory is read-only. Locally this still persists fine.
+  private file = path.join(os.tmpdir(), "campusflow-db.json");
   private chain: Promise<unknown> = Promise.resolve();
 
   private async read(): Promise<DbShape> {
@@ -252,9 +255,14 @@ class DynamoStore implements Store {
 /* ------------------------------ Selection ------------------------------- */
 
 function useDynamo(): boolean {
-  if (process.env.STORE === "dynamo") return true;
   if (process.env.STORE === "file") return false;
-  return Boolean(process.env.DDB_TABLE && process.env.AWS_ACCESS_KEY_ID);
+  // DynamoDB needs credentials. If they are not available at runtime, fall
+  // back to the file store instead of crashing with a credentials error.
+  const hasCreds =
+    Boolean(process.env.CF_AWS_ACCESS_KEY_ID && process.env.CF_AWS_SECRET_ACCESS_KEY) ||
+    Boolean(process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY);
+  if (process.env.STORE === "dynamo") return hasCreds;
+  return Boolean(process.env.DDB_TABLE && hasCreds);
 }
 
 let _store: Store | null = null;
