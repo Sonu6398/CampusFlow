@@ -36,7 +36,9 @@ export async function converse({
   maxTokens = 1500,
   temperature = 0.2,
 }: ConverseOpts): Promise<string> {
-  const apiKey = process.env.GROQ_API_KEY;
+  // GROQ_API_KEY is the primary name; GROQVAL is a plain-named alias that some
+  // hosts (Amplify) inject even when they withhold "secret-looking" variables.
+  const apiKey = process.env.GROQ_API_KEY || process.env.GROQVAL;
   if (!apiKey) {
     throw new Error("Missing GROQ_API_KEY env var");
   }

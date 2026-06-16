@@ -5,6 +5,7 @@
 // are baked into the server bundle (server-only, never sent to the browser).
 const PASS_THROUGH = [
   "GROQ_API_KEY",
+  "GROQVAL",
   "GROQ_MODEL_EXTRACT",
   "GROQ_MODEL_CHAT",
   "SESSION_SECRET",

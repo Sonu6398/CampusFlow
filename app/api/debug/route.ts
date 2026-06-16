@@ -7,6 +7,7 @@ export const runtime = "nodejs";
 export async function GET() {
   return NextResponse.json({
     hasGroqKey: Boolean(process.env.GROQ_API_KEY),
+    hasGroqVal: Boolean(process.env.GROQVAL),
     groqModel: process.env.GROQ_MODEL_CHAT ?? null,
     store: process.env.STORE ?? null,
     ddbTable: process.env.DDB_TABLE ?? null,
